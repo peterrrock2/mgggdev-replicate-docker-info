@@ -39,12 +39,16 @@ RUN R -e "remotes::install_version('redist', version='4.2.0', repos='http://cran
 
 RUN cargo install --git https://github.com/peterrrock2/msms_parser.git
 RUN cargo install --git https://github.com/peterrrock2/smc_parser.git
+RUN cargo install binary-ensemble
 
+# Install the necessary runner files every time
 ARG CACHEBUST=1
-# Install the necessary runner files
 COPY ./home /home
 
 # # Set up forest recom
 RUN cd /home/forest \
     && julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate(); Pkg.build();'
 RUN julia -e 'using Pkg; Pkg.add("ArgParse"); Pkg.develop(PackageSpec(path="/home/forest"))'
+
+RUN cd /home/frcw \
+    && cargo install --path .
