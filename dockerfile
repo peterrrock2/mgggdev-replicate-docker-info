@@ -37,9 +37,9 @@ RUN R -e "install.packages(c('argparser', 'dplyr', 'ggplot2', 'remotes', 'sf'), 
 # Install redist. This is split to make cached rebuilds easer for the dev
 RUN R -e "remotes::install_version('redist', version='4.2.0', repos='http://cran.rstudio.com/')"
 
-RUN cargo install --git https://github.com/peterrrock2/msms_parser.git
-RUN cargo install --git https://github.com/peterrrock2/smc_parser.git
-RUN cargo install binary-ensemble
+RUN cargo install --git https://github.com/peterrrock2/msms_parser.git --tag=v0.1.0
+RUN cargo install --git https://github.com/peterrrock2/smc_parser.git --tag=v0.1.0
+RUN cargo install binary-ensemble --version 0.1.1
 
 # Install the necessary runner files every time
 ARG CACHEBUST=1
