@@ -39,7 +39,7 @@ RUN R -e "remotes::install_version('redist', version='4.2.0', repos='http://cran
 
 RUN cargo install --git https://github.com/peterrrock2/msms_parser.git --tag=v0.1.0
 RUN cargo install --git https://github.com/peterrrock2/smc_parser.git --tag=v0.1.0
-RUN cargo install binary-ensemble --version 0.1.2
+RUN cargo install binary-ensemble --version 0.1.3
 
 # Install the necessary runner files every time
 ARG CACHEBUST=1
